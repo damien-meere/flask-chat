@@ -39,6 +39,7 @@ def user(username):
         message = request.form["message"]
         add_messages(username, message)
         return redirect(session["username"])
+        #we use a redirect here rather than the standard render_template, as on refresh, all messages would be sent over and over again with the render_template
 
     #return "<h1>Welcome, {0}</h1>{1}".format(username, messages)
     return render_template("chat.html", username = username, chat_messages = messages)
@@ -48,7 +49,6 @@ def send_message(username, message):
     """Create a new message and redirect back to the chat page"""
     add_messages(username, message)
     return redirect("/" + username)
-
 
 #app.run(host=os.getenv("IP"), port=int(os.getenv("PORT")), debug=True)
 #app.run(host="0.0.0.0", port=int(5000), debug=True)

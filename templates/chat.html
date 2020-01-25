@@ -22,9 +22,24 @@
 	{% endfor %}
 
 	<script>
+        let textbox = document.getElementById("message")
+
+        //This script section relaods the page every 5 seconds, to make sure new messages are shown quickly
 		let timer = setTimeout(function() {
             location.reload();
         }, 5000)
+
+
+        //when there is an interaction with the textbox, the cimeout is cleared and restarted, so the page won't relaod when the user is typing
+        textbox.onkeydown = function(e){
+            clearTimeout(timer)
+
+            timer = setTimeout(function() {
+                location.reload();
+            }, 5000)
+        }
+
+
 	</script>
 </body>
 
